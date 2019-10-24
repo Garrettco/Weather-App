@@ -44,6 +44,10 @@ button.addEventListener('click', () => {
     recognition.start();
 })
 
+button.addEventListener('touchstart', () => {
+    recognition.start();
+})
+
 function readOutLoud(message){
     city = '';
     state = '';
