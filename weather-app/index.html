@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<title>Weather Assistant</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/grid.css">
+    <script src="https://kit.fontawesome.com/4ee14049c3.js"></script>
+</head>
+
+<body class="is-preload">
+    <div id="wrapper">
+
+        <div id="main">
+
+            <header>
+                <div class="location">
+                    <div id="temperature-icon-div">
+                        <img id="temperature-icon" src="./assets/icons/thermometer.svg">
+                    </div>
+                    <b><p class="location-zone"></p></b>
+                </div>
+            </header>
+            
+            <footer>
+                <ul class="icons">
+                    <div class="temperature">
+                        <p class="temperature-degree"></p>
+                        <p class="temperature-humidity"></p>
+                        <p class="temperature-desc"></p>
+                        <p class="temperature-degree-min"></p>
+                        <p class="temperature-degree-max"></p>
+                    </div>
+                </ul>
+                <h3 class="content">Please request a city and state for the weather</h3>
+                <button class="button"><i class="fas fa-microphone"></i></button>
+            </footer>
+        </div>
+
+        <footer id="footer">
+            <ul class="desc">
+                <li>Basic Weather App</li>
+                <li class="disclaimer">* voice recognition used to take in and parse user given city and state</li>
+
+            </ul>
+        </footer>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="cities.js"></script>
+    <script>
+            if ('addEventListener' in window) {
+                window.addEventListener('load', function() { 
+                    document.body.className = document.body.className.replace(/\bis-preload\b/, ''); 
+                });
+                document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+            }
+    </script>
+
+</body>
+</html>

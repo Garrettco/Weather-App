@@ -1,0 +1,44 @@
+.temperature {
+    display: grid;
+    grid-template-columns: 25% 50% 25% ;
+    grid-template-rows: 50% 25% 25%;
+    height: 100%;
+    width: 100%;
+}
+
+.temperature-degree {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 2;
+    font-size: 320%;
+    margin-top: -10%;
+}
+
+.temperature-degree-min {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 2;
+    font-size: 100%;
+    margin-top: 25%;
+}
+
+.temperature-degree-max {
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 2;
+    font-size: 100%;
+    margin-top: 25%;
+}
+
+.temperature-humidity {
+    grid-column: 1 / span 3;
+    grid-row: 3 / span 1;
+    font-size: 100%;
+    margin-top: -2%;
+    margin-bottom: 10px;
+}
+
+.temperature-desc {
+    grid-column: 1 / span 3;
+    grid-row: 2 / span 1;
+    font-size: 100%;
+    margin-top: -2%;
+}
+
