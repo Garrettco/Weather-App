@@ -11,18 +11,6 @@ const content = document.querySelector('.content');
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 
-var timeIcon = document.getElementById("time-icon");
-
-if(hour < 19 && hour >= 7)
-{
-    timeIcon.setAttribute("src", "./assets/icons/darksun.svg");
-    console.log('day');                           
-}
-else if(hour < 7 && hour >= 19){
-    timeIcon.setAttribute("src", "./assets/icons/darkmoon.svg");
-    console.log('night');                                                      
-}
-
 recognition.onstart = function () {
     console.log('microphone is on');
 };
