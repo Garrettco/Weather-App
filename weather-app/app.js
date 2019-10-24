@@ -32,7 +32,7 @@ button.addEventListener('click', () => {
     recognition.start();
 })
 
-button.addEventListener('touchstart', () => {
+button.addEventListener("touchstart", () => {
     recognition.start();
 })
 
