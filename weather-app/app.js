@@ -225,7 +225,7 @@ function readOutLoud(message){
 
     if(city !='' && state !='' && cs !=''){
         //geocoding api call
-        const geocodingapi = 'http://open.mapquestapi.com/geocoding/v1/address?';
+        const geocodingapi = 'https://open.mapquestapi.com/geocoding/v1/address?';
         const geocodingapiKey = 'gSPCRHTm8M2qPeoups5ARoWAYvKAJ3Cn';
         const locationForGeo = '&location='+city+','+state;
         const geocodingUrl = geocodingapi+'key='+geocodingapiKey+locationForGeo;
@@ -244,7 +244,7 @@ function readOutLoud(message){
                 $(".location-zone").text(location);
                     
                 //weather api call
-                const weatherapi = 'http://api.openweathermap.org/data/2.5/weather?';
+                const weatherapi = 'https://api.openweathermap.org/data/2.5/weather?';
                 const unitType = 'imperial';
                 const weatherapiKey = 'a5b70ff8327851e082d72dab4d181c5d';
                 const weatherUrl = weatherapi+'lat='+latitude+'&lon='+longitude+'&units='+unitType+'&APPID='+weatherapiKey;
