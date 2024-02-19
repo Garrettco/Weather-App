@@ -1,5 +1,4 @@
-# Weather-App
-basic weather app
+# tts-weather-app
 Basic weather app where user input is through speech.
 The user can give a sentence (ex: "What is the weather in Raleigh North Carolina?", or just simply a city and state name) and the speech recognition will take that in and validation will happen with an output of data from APIs. 
 The given city and state will be read out loud using the same speech recognition platform.

@@ -46,7 +46,6 @@ function readOutLoud(message){
         if(message.includes(cities[i])){
             city = cities[i];
             console.log(city + ' is in the array');
-            break;
         }
     }
 
@@ -54,192 +53,34 @@ function readOutLoud(message){
         if(message.includes(states[i])){
             state = states[i];
             console.log(state + ' is in the array');
-            break;
         }
     }
 
     //start of state declarations - full state name to letters
     speech.text ='Here is the weather for '+ city + ', ' + state;
 
-    if(message.includes('Alabama')){
-        state = 'AL';
-    }
-    if(message.includes('Alaska')){
-        state = 'AK';
-    }
-    if(message.includes('Arizona')){
-        state = 'AZ';
-    }
-    if(message.includes('Arkansas')){
-        state = 'AR';
-    }
-    if(message.includes('California')){
-        state = 'CA';
-    }
-    if(message.includes('Colorado')){
-        state = 'CO';
-    }
-    if(message.includes('Connecticut')){
-        state = 'CT';
-    }
-    if(message.includes('Delaware')){
-        state = 'DE';
-    }
-    if(message.includes('Florida')){
-        state = 'FL';
-    }
-    if(message.includes('Georgia')){
-        state = 'GA';
-    }
-    if(message.includes('Hawaii')){
-        state = 'HI';
-    }
-    if(message.includes('Idaho')){
-        state = 'ID';
-    }
-    if(message.includes('Illinois')){
-        state = 'IL';
-    }
-    if(message.includes('Indiana')){
-        state = 'IN';
-    }
-    if(message.includes('Iowa')){
-        state = 'IA';
-    }
-    if(message.includes('Kansas')){
-        state = 'KS';
-    }
-    if(message.includes('Kentucky')){
-        state = 'KY';
-    }
-    if(message.includes('Louisiana')){
-        state = 'LA';
-    }
-    if(message.includes('Maine')){
-        state = 'ME';
-    }
-    if(message.includes('Maryland')){
-        state = 'MD';
-    }
-    if(message.includes('Massachusetts')){
-        state = 'MA';
-    }
-    if(message.includes('Michigan')){
-        state = 'MI';
-    }
-    if(message.includes('Minnesota')){
-        state = 'MN';
-    }
-    if(message.includes('Mississippi')){
-        state = 'MS';
-    }
-    if(message.includes('Missouri')){
-        state = 'MO';
-    }
-    if(message.includes('Montana')){
-        state = 'MT';
-    }
-    if(message.includes('Nebraska')){
-        state = 'NE';
-    }
-    if(message.includes('Nevada')){
-        state = 'NV';
-    }
-    if(message.includes('New Hampshire')){
-        state = 'NH';
-    }
-    if(message.includes('New Jersey')){
-        state = 'NJ';
-    }
-    if(message.includes('New Mexico')){
-        state = 'NM';
-    }
-    if(message.includes('New York')){
-        state = 'NY';
-    }
-    if(message.includes('North Carolina')){
-        state = 'NC';
-    }
-    if(message.includes('North Dakota')){
-        state = 'ND';
-    }
-    if(message.includes('Ohio')){
-        state = 'OH';
-    }
-    if(message.includes('Oklahoma')){
-        state = 'OK';
-    }
-    if(message.includes('Oregon')){
-        state = 'OR';
-    }
-    if(message.includes('Pennsylvania')){
-        state = 'PA';
-    }
-    if(message.includes('Rhode Island')){
-        state = 'RI';
-    }
-    if(message.includes('South Carolina')){
-        state = 'SC';
-    }
-    if(message.includes('South Dakota')){
-        state = 'SD';
-    }
-    if(message.includes('Tennessee')){
-        state = 'TN';
-    }
-    if(message.includes('Texas')){
-        state = 'TX';
-    }
-    if(message.includes('Utah')){
-        state = 'UT';
-    }
-    if(message.includes('Vermont')){
-        state = 'VT';
-    }
-    if(message.includes('Virginia')){
-        state = 'VA';
-    }
-    if(message.includes('Washington')){
-        state = 'WA';
-    }
-    if(message.includes('West Virginia')){
-        state = 'WV';
-    }
-    if(message.includes('Wisconsin')){
-        state = 'WI';
-    }
-    if(message.includes('Wyoming')){
-        state = 'WY';
-    }
-
     var tempLoc = city+','+state;
-    console.log(tempLoc);
 
     for(var i = 0; i<cityState.length; i++){
         if(tempLoc.includes(cityState[i])){
             cs = cityState[i];
             console.log(cs + ' is in the array');
-            break;
         }
     }
 
     if(city !='' && state !='' && cs !=''){
+        console.log("test before api calls here")
         //geocoding api call
-        const geocodingapi = 'https://open.mapquestapi.com/geocoding/v1/address?';
-        const geocodingapiKey = 'gSPCRHTm8M2qPeoups5ARoWAYvKAJ3Cn';
-        const locationForGeo = '&location='+city+','+state;
-        const geocodingUrl = geocodingapi+'key='+geocodingapiKey+locationForGeo;
-        console.log(geocodingUrl);
+        const geocodingapi = 'https://geocode.maps.co/search?q=';
+        const geocodingapiKey = '65d2ac906f524460848773rat340c5c';
+        const locationForGeo = city+'+'+state;
+        const geocodingUrl = geocodingapi+locationForGeo+'&api_key='+geocodingapiKey;
 
         $.getJSON(geocodingUrl, 
             function(data) {
-                console.log(data);
-
-                var latitude = data.results[0].locations[0].latLng.lat;
-                var longitude = data.results[0].locations[0].latLng.lng;
-                var location = data.results[0].providedLocation.location;
-
-                console.log(location);
+                var latitude = data[0].lat;
+                var longitude = data[0].lon;
+                var location = city+','+state;
 
                 $(".location-zone").text(location);
                     
@@ -248,73 +89,36 @@ function readOutLoud(message){
                 const unitType = 'imperial';
                 const weatherapiKey = 'a5b70ff8327851e082d72dab4d181c5d';
                 const weatherUrl = weatherapi+'lat='+latitude+'&lon='+longitude+'&units='+unitType+'&APPID='+weatherapiKey;
-                console.log(weatherUrl);
 
                 $.getJSON(weatherUrl, 
                     function(data) {
-                        console.log(data);
-
                         var imageId = document.getElementById("temperature-icon");
-
                         var temperature = Math.round(data.main.temp);
                         var humidity = Math.round(data.main.humidity);
                         var desc = data.weather[0].description;
                         var mainWeather = data.weather[0].main;
                         var temperatureMin = Math.round(data.main.temp_min);
                         var temperatureMax = Math.round(data.main.temp_max);
+                        const weatherIconMap = new Map();
 
-                        console.log(temperature);
-                        console.log(humidity);
-                        console.log(desc);
-                        console.log(mainWeather);
-                        console.log(temperatureMin);
-                        console.log(temperatureMax);
+                        weatherIconMap.set('Clear', "./assets/icons/sun.svg");
+                        weatherIconMap.set('Clouds', "./assets/icons/cloud.svg");
+                        weatherIconMap.set('Drizzle', "./assets/icons/rain.svg");
+                        weatherIconMap.set('Rain', "./assets/icons/rain.svg");
+                        weatherIconMap.set('Thunderstorm', "./assets/icons/storm.svg");
+                        weatherIconMap.set('Snow', "./assets/icons/snowflake.svg");
+                        weatherIconMap.set('Mist', "./assets/icons/windy.svg");
+                        weatherIconMap.set('Smoke', "./assets/icons/windy.svg");
+                        weatherIconMap.set('Haze', "./assets/icons/windy.svg");
+                        weatherIconMap.set('Dust', "./assets/icons/windy.svg");
+                        weatherIconMap.set('Fog', "./assets/icons/windy.svg");
+                        weatherIconMap.set('Sand', "./assets/icons/windy.svg");
+                        weatherIconMap.set('Ash', "./assets/icons/windy.svg");
+                        weatherIconMap.set('Squall', "./assets/icons/windy.svg");
+                        weatherIconMap.set('Tornado', "./assets/icons/windy.svg");
 
-                        if(mainWeather=='Clear'){
-                            imageId.setAttribute("src", "./assets/icons/sun.svg");
-                        }
-                        if(mainWeather=='Clouds'){
-                            imageId.setAttribute("src", "./assets/icons/cloud.svg");
-                        }
-                        if(mainWeather=='Drizzle'){
-                            imageId.setAttribute("src", "./assets/icons/rain.svg");                            
-                        }
-                        if(mainWeather=='Rain'){
-                            imageId.setAttribute("src", "./assets/icons/rain.svg");                            
-                        }
-                        if(mainWeather=='Thunderstorm'){
-                            imageId.setAttribute("src", "./assets/icons/storm.svg");                            
-                        }
-                        if(mainWeather=='Snow'){
-                            imageId.setAttribute("src", "./assets/icons/snowflake.svg");                            
-                        }
-                        if(mainWeather=='Mist'){
-                            imageId.setAttribute("src", "./assets/icons/windy.svg");                            
-                        }
-                        if(mainWeather=='Smoke'){
-                            imageId.setAttribute("src", "./assets/icons/windy.svg");                            
-                        }
-                        if(mainWeather=='Haze'){
-                            imageId.setAttribute("src", "./assets/icons/windy.svg");                            
-                        }
-                        if(mainWeather=='Dust'){
-                            imageId.setAttribute("src", "./assets/icons/windy.svg");                            
-                        }
-                        if(mainWeather=='Fog'){
-                            imageId.setAttribute("src", "./assets/icons/windy.svg");                            
-                        }
-                        if(mainWeather=='Sand'){
-                            imageId.setAttribute("src", "./assets/icons/windy.svg");                            
-                        }
-                        if(mainWeather=='Ash'){
-                            imageId.setAttribute("src", "./assets/icons/windy.svg");                            
-                        }
-                        if(mainWeather=='Squall'){
-                            imageId.setAttribute("src", "./assets/icons/windy.svg");                            
-                        }
-                        if(mainWeather=='Tornado'){
-                            imageId.setAttribute("src", "./assets/icons/windy.svg");                            
-                        }
+                        weatherIcon = weatherIconMap.get(mainWeather)
+                        imageId.setAttribute("src", weatherIcon)
 
                         $(".temperature-degree").text(temperature+'ºf');
                         $(".temperature-humidity").text('humidity: '+humidity+'%');
